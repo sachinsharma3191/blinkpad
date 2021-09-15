@@ -28,6 +28,13 @@ const state = {
                 commit('SET_ERROR', err);
             });
         },
+        async resetScore({commit}) {
+            axios.post(util.API_URL + "/reset").then(response => {
+                commit('SET_SUCCESS', response.data);
+            }).catch(err => {
+                commit('SET_ERROR', err);
+            });
+        },
         async updateScore({commit}, data) {
             await axios.post(util.API_URL, data).then(response => {
                 commit('SET_SUCCESS', response.data)

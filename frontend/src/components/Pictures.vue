@@ -8,9 +8,14 @@
       ></v-progress-circular>
     </div>
     <div v-else>
-      <li v-for="image in images" :key="image.imageId">
-        <Picture :image="image"/>
-      </li>
+      <div class="reset-button">
+        <v-btn color="primary" @click.prevent="resetScore">Reset Score</v-btn>
+      </div>
+      <div>
+        <li v-for="image in images" :key="image.imageId">
+          <Picture :image="image"/>
+        </li>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +46,10 @@ export default {
       this.loading = true;
       await this.$store.dispatch("loadImages");
       this.loading = false;
+    },
+    async resetScore(){
+      await this.$store.dispatch("resetScore");
+      this.$forceUpdate();
     }
   }
 }
@@ -48,6 +57,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.reset-button {
+  margin: 20px 20px;
+}
 h3 {
   margin: 40px 0 0;
 }

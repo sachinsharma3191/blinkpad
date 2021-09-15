@@ -51,6 +51,8 @@ export default {
 <style scoped>
 .picture {
   width: 500px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .v-btn-actions {
@@ -58,7 +60,7 @@ export default {
   justify-content: center;
 }
 
- .positive-button, .negative-button {
+.positive-button, .negative-button {
   padding-left: 10px;
   margin-top: 10px;
 }

@@ -46,23 +46,36 @@ def update_count():
     img_id = request_data["imageId"]
     count = request_data["count"]
 
-    if not img_id or not count:
-        return "Please provide the valid body params", 400
-
-    if img_id < 0 or count < 0:
+    if img_id < 0:
         return "Please provide the values greater than 0", 400
 
-    searchQuery = {"imageId": img_id}
-    updateData = {
+    search_query = {"imageId": img_id}
+    update_data = {
         "imageId": img_id,
         "count": count,
         "imageName": request_data["imageName"]
     }
 
-    res = images.update_one(searchQuery, {"$set": updateData}, upsert=True)
+    res = images.update_one(search_query, {"$set": update_data}, upsert=True)
     print(res.matched_count)
 
     return "Store updated for image " + str(img_id), 200
+
+
+@app.route("/api/v1/image/reset", methods=['POST'])
+def reset_score():
+    data = images.find({}, {"_id": 0})
+    counter = 0
+    for record in data:
+        search_query = {"imageId": record["imageId"]}
+        update_data = {
+            "count": 0,
+        }
+        res = images.update_one(search_query, {"$set": update_data}, upsert=True)
+        counter += res.matched_count
+    if counter != data.count():
+        return "Unable to reset counter", 400
+    return "Reset the score successfully", 200
 
 
 if __name__ == '__main__':
