@@ -26,15 +26,22 @@
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+      <li>{{Images}}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Images',
   props: {
     msg: String
+  },
+  computed: {
+    Images(){
+      console.log(this.$store.Image);
+      return this.$store.Image;
+    }
   }
 }
 </script>

@@ -1,16 +1,20 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Images/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Images from './components/Images.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Images
+  }, mounted() {
+    this.$store.dispatch("loadImages");
   }
+
 }
 </script>
 
