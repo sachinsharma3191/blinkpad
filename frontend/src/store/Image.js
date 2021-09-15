@@ -32,8 +32,8 @@ const actions = {
     loadImage({commit}, image) {
         commit("SET_IMAGE", image)
     },
-    updateImageCount({commit}, data) {
-        axios.post(util.API_URL, data).then(response => {
+    async updateImageCount({commit}, data) {
+        await axios.post(util.API_URL, data).then(response => {
             console.log(response);
             commit('SET_SUCCESS', response.data)
         }).catch(err => {

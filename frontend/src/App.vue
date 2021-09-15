@@ -11,10 +11,7 @@ export default {
   name: 'App',
   components: {
     Images
-  }, mounted() {
-    this.$store.dispatch("loadImages");
   }
-
 }
 </script>
 
