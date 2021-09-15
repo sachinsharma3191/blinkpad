@@ -13,9 +13,6 @@ const mutations = {
     SET_IMAGES(state, images) {
         state.images = images;
     },
-    SET_IMAGE(state, image) {
-        state.image = image
-    },
     SET_ERROR(state, error) {
         state.error = error;
     }
@@ -29,10 +26,7 @@ const actions = {
             commit('SET_ERROR', err);
         });
     },
-    loadImage({commit}, image) {
-        commit("SET_IMAGE", image)
-    },
-    async updateImageCount({commit}, data) {
+    async updateScore({commit}, data) {
         await axios.post(util.API_URL, data).then(response => {
             console.log(response);
             commit('SET_SUCCESS', response.data)

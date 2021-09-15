@@ -10,7 +10,7 @@
       <v-btn color="primary" @click.prevent="updateScore('-')">-</v-btn>
     </div>
     <div class="text--black">
-      {{ Image.count }}
+      {{ this.score }}
     </div>
   </div>
 </template>
