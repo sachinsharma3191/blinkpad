@@ -29,7 +29,10 @@ const actions = {
             commit('SET_ERROR', err);
         });
     },
-    updateImageScore({commit}, data) {
+    loadImage({commit}, image) {
+        commit("SET_IMAGE", image)
+    },
+    updateImageCount({commit}, data) {
         axios.post(util.API_URL, data).then(response => {
             console.log(response);
             commit('SET_SUCCESS', response.data)
@@ -41,7 +44,7 @@ const actions = {
 
 //to handle state
 //const getters = {
-  //  allImages: (state) => state.images
+//  allImages: (state) => state.images
 //}
 
 export default createStore({
