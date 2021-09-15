@@ -4,10 +4,10 @@
 
     </div>
     <div class="text-button">
-      <v-btn color="primary" @click.prevent="updateScore('+')">+</v-btn>
+      <button color="primary" @click.prevent="updateScore('+')">+</button>
     </div>
     <div class="text-button">
-      <v-btn color="primary" @click.prevent="updateScore('-')">-</v-btn>
+      <button color="primary" @click.prevent="updateScore('-')">-</button>
     </div>
     <div class="text--black">
       {{ this.score }}
@@ -17,14 +17,14 @@
 
 <script>
 export default {
-  name: "Image",
+  name: "Picture",
   props: {
-    Image: {
+    image: {
       type: Object
     }
   },
   mounted() {
-    this.score = Image.count
+    this.score = this.image.count
   },
   data() {
     return {
@@ -36,8 +36,8 @@ export default {
       this.score = operation === "+" ? this.score + 1 : this.score - 1;
       const payload = {
         "count": this.score,
-        "imageId": Image.imageId,
-        "imageName": Image.imageName
+        "imageId": this.image.imageId,
+        "imageName": this.image.imageName
       }
       await this.$store.updateScore(payload);
     }
