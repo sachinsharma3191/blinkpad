@@ -33,7 +33,6 @@ def get_count(img_id):
         }), 404
 
     for record in data:
-        print(record)
         res.append(record)
 
     return jsonify(res)
