@@ -8,7 +8,7 @@
         <v-btn color="primary" @click.prevent="updateScore('+')">+</v-btn>
       </div>
       <div class="negative-button">
-        <v-btn color="primary" @click.prevent="updateScore('-')">-</v-btn>
+         <v-btn color="primary" @click.prevent="updateScore('-')">-</v-btn>
       </div>
       <div class="score-div">
         <p class="score">Total Score {{ this.score }}</p>
