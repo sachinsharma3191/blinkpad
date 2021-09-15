@@ -1,8 +1,17 @@
 <template>
   <div class="hello">
+    <div v-if="loading">
+      <v-progress-circular
+          :size="50"
+          color="primary"
+          indeterminate
+      ></v-progress-circular>
+    </div>
+    <div v-else>
       <li v-for="image in images" :key="image.imageId">
         <Picture :image="image"/>
       </li>
+    </div>
   </div>
 </template>
 

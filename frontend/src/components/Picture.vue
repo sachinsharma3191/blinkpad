@@ -1,17 +1,20 @@
 <template>
   <div class="container">
-    <div class="">
+    <div class="images-div">
+      <v-img class="picture" :src="require(`../assets/images/${image.imageName}`)"/>
+    </div>
+    <div class="v-btn-actions">
+      <div class="positive-button">
+        <v-btn color="primary" @click.prevent="updateScore('+')">+</v-btn>
+      </div>
+      <div class="negative-button">
+        <v-btn color="primary" @click.prevent="updateScore('-')">-</v-btn>
+      </div>
+      <div class="score-div">
+        <p class="score">Total Score {{ this.score }}</p>
+      </div>
+    </div>
 
-    </div>
-    <div class="text-button">
-      <button color="primary" @click.prevent="updateScore('+')">+</button>
-    </div>
-    <div class="text-button">
-      <button color="primary" @click.prevent="updateScore('-')">-</button>
-    </div>
-    <div class="text--black">
-      {{ this.score }}
-    </div>
   </div>
 </template>
 
@@ -39,12 +42,31 @@ export default {
         "imageId": this.image.imageId,
         "imageName": this.image.imageName
       }
-      await this.$store.updateScore(payload);
+      await this.$store.dispatch('updateScore', payload);
     }
   }
 }
 </script>
 
 <style scoped>
+.picture {
+  width: 500px;
+}
 
+.v-btn-actions {
+  display: flex;
+  justify-content: center;
+}
+
+ .positive-button, .negative-button {
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.score {
+  padding-left: 10px;
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: bolder;
+}
 </style>

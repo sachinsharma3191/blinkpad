@@ -16,6 +16,9 @@ const state = {
         },
         SET_ERROR(state, error) {
             state.error = error;
+        },
+        SET_SUCCESS(state, success) {
+            state.success = success;
         }
     }, actions = {
         loadImages({commit}) {
@@ -27,7 +30,6 @@ const state = {
         },
         async updateScore({commit}, data) {
             await axios.post(util.API_URL, data).then(response => {
-                console.log(response);
                 commit('SET_SUCCESS', response.data)
             }).catch(err => {
                 commit('SET_ERROR', err);
@@ -41,8 +43,8 @@ const state = {
     };
 
 export default new Vuex.Store({
-  state,
-  mutations,
-  actions,
-  getters
+    state,
+    mutations,
+    actions,
+    getters
 })
