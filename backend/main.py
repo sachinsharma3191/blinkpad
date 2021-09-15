@@ -62,21 +62,5 @@ def update_count():
     return "Store updated for image " + str(img_id), 200
 
 
-@app.route("/api/v1/image/reset", methods=['POST'])
-def reset_score():
-    data = images.find({}, {"_id": 0})
-    counter = 0
-    for record in data:
-        search_query = {"imageId": record["imageId"]}
-        update_data = {
-            "count": 0,
-        }
-        res = images.update_one(search_query, {"$set": update_data}, upsert=True)
-        counter += res.matched_count
-    if counter != data.count():
-        return "Unable to reset counter", 400
-    return "Reset the score successfully", 200
-
-
 if __name__ == '__main__':
     app.run(debug=True)
