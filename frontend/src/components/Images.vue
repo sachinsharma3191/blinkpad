@@ -30,15 +30,17 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
       <li>{{ Images }}</li>
+      <Image/>
     </ul>
   </div>
 </template>
 
 <script>
+import Image from './Image';
 export default {
   name: 'Images',
-  props: {
-    msg: String
+  components: {
+    Image
   },
   async mounted() {
     await this.loadImages();

@@ -7,18 +7,14 @@ const state = {
     image: {},
     error: null,
     success: null,
-}
-
-const mutations = {
+}, mutations = {
     SET_IMAGES(state, images) {
         state.images = images;
     },
     SET_ERROR(state, error) {
         state.error = error;
     }
-}
-
-const actions = {
+}, actions = {
     loadImages({commit}) {
         axios.get(util.API_URL).then(response => {
             commit('SET_IMAGES', response.data);
@@ -34,16 +30,11 @@ const actions = {
             commit('SET_ERROR', err);
         })
     }
-}
+};
 
-//to handle state
-//const getters = {
-//  allImages: (state) => state.images
-//}
 
 export default createStore({
     state,
     actions,
-
     mutations
 });
