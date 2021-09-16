@@ -10,7 +10,7 @@ services:
     ports:
       - "9000:5000"
 
-  ui:
+  web:
     build: ./ui
     container_name: ui
     restart: always
