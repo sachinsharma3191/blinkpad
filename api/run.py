@@ -1,9 +1,13 @@
+import os
+
 from flask import Flask, request
 from flask.json import jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 
 from config import *
+
+DEFAULT_PORT = 9000
 
 config = read_config()
 
@@ -72,4 +76,4 @@ def update_count():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=os.getenv('PORT'))
