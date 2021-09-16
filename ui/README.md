@@ -1,4 +1,4 @@
-# ui
+# Vue Front End
 
 ## Project setup
 ```
