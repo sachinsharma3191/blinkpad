@@ -1,15 +1,25 @@
 from flask import Flask, request
 from flask.json import jsonify
 from flask_cors import CORS
+from pymongo import MongoClient
 
-from db import *
+from config import *
+
+config = read_config()
+
+host = config.get('database', 'MONGO_DB_HOST')
+username = config.get('database', 'MONGO_DB_USER')
+password = config.get('database', 'MONGO_DB_PASSWORD')
+
+url = "mongodb+srv://" + username + ":" + password + "@" + host
+
+client = MongoClient(url)
+db = client["blinkpad"]
+images = db.images
+db = client.TaskManager
 
 app = Flask(__name__)
 CORS(app)
-
-client = create_client()
-db = client["blinkpad"]
-images = db.images
 
 
 @app.route("/api/v1/image")
@@ -62,4 +72,4 @@ def update_count():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
